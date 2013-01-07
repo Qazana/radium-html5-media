@@ -20,6 +20,7 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
  * @package	Radium_Forms
  * @author	Franklin Gitonga
  */
+ 
 /** Load all of the necessary class files for the plugin */
 spl_autoload_register( 'Radium_HTML5Media::autoload' );
 
