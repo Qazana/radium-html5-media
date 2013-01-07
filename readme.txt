@@ -1,5 +1,5 @@
 === Radium HTML5 Media for WordPress – Flash & HTML5 Video Player ===
-Contributors: LongTail Video Inc.
+Contributors: RadiumThemes.com
 Tags: JPlayer, Video, Flash, Audio, Image, HTML5, iPad, iPhone, iPod
 Requires at least: 3.0
 Tested up to: 3.5.0
