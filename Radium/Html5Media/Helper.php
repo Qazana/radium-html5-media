@@ -227,36 +227,48 @@ class Radium_HTML5Media_Helper {
 			$video_file_url = get_post_meta( $postid, '_radium_video_file', true );
 			
 		}
-		
-		
-		//if( filter_var( $video_file_url, FILTER_VALIDATE_URL ) ) {
-		//	switch( pathinfo( $video_file_url, PATHINFO_EXTENSION ) ) {
-		//		case 'mp4':  //mp4
+ 
+		if( filter_var( $video_file_url, FILTER_VALIDATE_URL ) ) {
+			switch( pathinfo( $video_file_url, PATHINFO_EXTENSION ) ) {
+			
+				case 'mp4':  //mp3
 					$media = "mp4: '$video_file_url'";
 					$supplied = 'supplied: "mp4, all"';
-					//	break;
-				/*case 'ogv': //ogv
-					$media = "ogv: '$video_file_url'";
-					$supplied = 'supplied: "ogv, ogg, mp4",';
 						break;
-				case 'webmv': //webma
+				case 'm4v':  //mp4
+					$media = "m4v: '$video_file_url'";
+					$supplied = 'supplied: "m4v, all",';
+					break;
+				case 'flv': //flv
+					$media = "flv: '$video_file_url'";
+					$supplied = 'supplied: "flv, all",';
+						break;	
+				case 'ogg': //ogg
+					$media = "oga: '$video_file_url'";
+					$supplied = 'supplied: "oga, ogg, mp3",';
+						break;
+				case 'ogv': //oga
+					$media = "ogv: '$video_file_url'";
+					$supplied = 'supplied: "ogv, all",';
+					break;
+				case 'webma': //webma
 					$media = "webma: '$video_file_url'";
-					$supplied = 'supplied: "webmv, mp3",';	
+					$supplied = 'supplied: "webma, mp3",';	
 					break;
-				case 'webmv': //webmv
-					$media = "webmv: '$video_file_url'";
-					$supplied = 'supplied: "webmv, mp3",';	
+				case 'webm': //webma
+					$media = "webma: '$video_file_url'";
+					$supplied = 'supplied: "webma, mp3",';	
 					break;
-				case 'rtmpv':
-					$media = "rtmpv: '$video_file_url'";
-					$supplied = 'supplied: "rtmpv, mp3",';	
+				case 'wav':
+					$media = "wav: '$video_file_url'";
+					$supplied = 'supplied: "wav, mp3",';	
 					break;
 				default:
 					// audio format not supported 
 					return;
 					break;
 			}
-		} */
+		}
 						
 		//$width = get_post_meta($postid, '_radium_video_width', true);
 		$height = get_post_meta($postid, '_radium_video_height', true);
@@ -271,8 +283,10 @@ class Radium_HTML5Media_Helper {
 	 	$output .= 'jQuery("#jquery_jplayer_'.$postid.'").jPlayer( { ready : function () { ';
 	 	
 	 	$output .= 'jQuery(this).jPlayer( "setMedia", { ';
+	 	
+	 	$output .= $media .',';
 	 					
-		$output .= 'm4v: "'.$video_file_url.'",';
+		//$output .= 'm4v: "'.$video_file_url.'",';
 		//if($ogv != '') $output .= 'ogv: "'.$ogv.'",';
 		if ($poster != '') $output .= 'poster: "'.$poster.'"';
 		$output .= '} 
