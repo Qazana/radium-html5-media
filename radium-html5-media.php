@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  * Loads all of the necessary components for the radium forms plugin.
  *
- * @since 1.0.0
+ * @since 1.0.1
  *
  * @package	Radium_Forms
  * @author	Franklin Gitonga
@@ -61,7 +61,7 @@ class Radium_HTML5Media {
 	 *
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.0.1';
 	
 	/**
 	 * Holds a copy of the main plugin filepath.
@@ -109,7 +109,15 @@ class Radium_HTML5Media {
 		
 		/** Fire up the shortcode */
 		$radium_html5_media_shortcode	= new Radium_HTML5Media_Shortcode;
-			
+		
+		$args = array(
+			'remote_url' 	=> 'http://api.radiumthemes.com/updates/radium-html5-media.json',
+			'time' 			=> 12, //how often to check for updates in hours,
+			'plugin_slug' 	=> 'radium-html5-media'
+		);
+	
+		//check for updates
+		$radium_html5_media_update = new Radium_Updates_Checker( $args['remote_url'], __FILE__, $args['plugin_slug'], $args['time'] );	
 	}
 	
 	/**
@@ -136,7 +144,7 @@ class Radium_HTML5Media {
 	 */
 	public static function autoload( $classname ) {
 	
-		if ( 'Radium_HTML5Media' !== mb_substr( $classname, 0, 17 ) )
+		if ( 'Radium' !== mb_substr( $classname, 0, 6 ) )
 			return;
 			
 		$filename = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . str_replace( '_', DIRECTORY_SEPARATOR, $classname ) . '.php';

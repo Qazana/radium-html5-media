@@ -286,8 +286,6 @@ class Radium_HTML5Media_Helper {
 	 	
 	 	$output .= $media .',';
 	 					
-		//$output .= 'm4v: "'.$video_file_url.'",';
-		//if($ogv != '') $output .= 'ogv: "'.$ogv.'",';
 		if ($poster != '') $output .= 'poster: "'.$poster.'"';
 		$output .= '} 
 	 						); 
@@ -384,7 +382,7 @@ class Radium_HTML5Media_Helper {
 	 */
 	public function video($postid) { 
 	
-		echo get_video($postid);
+		echo $this->get_video($postid);
 		
 	}
 	
